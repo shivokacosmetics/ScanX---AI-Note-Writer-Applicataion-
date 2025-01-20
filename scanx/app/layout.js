@@ -1,12 +1,12 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import {Montserrat} from "next/font/google";
+import { Montserrat } from "next/font/google";
+import Provider from "./provider";
 
 const montserratFont = Montserrat({
   subsets: ["latin"],
   weights: ["300", "400", "500", "600", "700"],
 });
-  
 
 export const metadata = {
   title: "Create Next App",
@@ -16,10 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-       className={montserratFont.className}
-      >
-        {children}
+      <body className={montserratFont.className}>
+        
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

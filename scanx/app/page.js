@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 
@@ -8,7 +9,7 @@ export default function Home() {
 
       <Card width = "50%">
         Hello
-        <button>Click</button>
+        <Button>Click</Button>
       </Card>
     </div>
   );
