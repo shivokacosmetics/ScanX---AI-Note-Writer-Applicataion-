@@ -46,40 +46,7 @@ export default function Home() {
       <Button>Click</Button>
       <br />
       <Button>Hello</Button>
-      <Popover>
-  <PopoverTrigger>Open</PopoverTrigger>
-  <PopoverContent><Button>Hello</Button></PopoverContent>
-</Popover>
 
-<InputOTP maxLength={6}>
-  <InputOTPGroup>
-    <InputOTPSlot index={0} />
-    <InputOTPSlot index={1} />
-    <InputOTPSlot index={2} />
-  </InputOTPGroup>
-  <InputOTPSeparator />
-  <InputOTPGroup>
-    <InputOTPSlot index={3} />
-    <InputOTPSlot index={4} />
-    <InputOTPSlot index={5} />
-  </InputOTPGroup>
-</InputOTP>
-<br />
-<br />
-<br />
-
-
-<ResizablePanelGroup direction="horizontal">
-  <ResizablePanel>One</ResizablePanel>
-  <ResizableHandle />
-  <ResizablePanel>Two</ResizablePanel>
-  <ResizablePanel>three</ResizablePanel>
-</ResizablePanelGroup>
-
-
-
-
-      {/* <Carousel></Carousel> */}
     </div>
   );
 }
