@@ -14,6 +14,11 @@ import { Popover,
     InputOTPSeparator,
     InputOTPSlot,
   } from "../components/components/ui/input-otp";
+  import {
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+  } from "../components/components/ui/resizable";
   
 
 export default function Home() {
@@ -59,6 +64,18 @@ export default function Home() {
     <InputOTPSlot index={5} />
   </InputOTPGroup>
 </InputOTP>
+<br />
+<br />
+<br />
+
+
+<ResizablePanelGroup direction="horizontal">
+  <ResizablePanel>One</ResizablePanel>
+  <ResizableHandle />
+  <ResizablePanel>Two</ResizablePanel>
+  <ResizablePanel>three</ResizablePanel>
+</ResizablePanelGroup>
+
 
 
 
