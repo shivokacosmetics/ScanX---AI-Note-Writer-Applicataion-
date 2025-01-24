@@ -5,21 +5,7 @@ import { useMutation } from "convex/react";
 import { api } from "./../convex/_generated/api";
 import { useEffect } from "react";
 import Image from "next/image";
-import { Popover,
-  PopoverContent,
-  PopoverTrigger} from "../components/components/ui/popover";
-  import {
-    InputOTP,
-    InputOTPGroup,
-    InputOTPSeparator,
-    InputOTPSlot,
-  } from "../components/components/ui/input-otp";
-  import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
-  } from "../components/components/ui/resizable";
-  
+
 
 export default function Home() {
   const { user } = useUser();
@@ -27,14 +13,14 @@ export default function Home() {
 
   useEffect(() => {
     if (user) {
-      user && CheckUser();
+      user&&CheckUser();
     }
   }, [user]);
   const CheckUser = async () => {
     const result = await createUser({
-      email: user?.primaryEmailAddress?.emailAddress,
-      imageUrl: user?.imageUrl,
-      userName: user?.fullName,
+      email: user?.primaryEmailAddress?.emailAddress || "", // Ensure email is not undefined
+      imageUrl: user?.imageUrl || "", // Match the server-side validator
+      userName: user?.fullName || "Anonymous", // Provide a fallback for the username
     });
     console.log(result);
   };
