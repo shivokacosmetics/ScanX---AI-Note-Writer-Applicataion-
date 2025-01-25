@@ -3,6 +3,7 @@ import { Button } from "../../../components/components/ui/button";
 import Image from "next/image";
 import React from "react";
 import { Progress } from "../../../components/components/ui/progress";
+import UploadPdf from "./UploadPdf";
 
 function SideBar() {
   return (
@@ -10,7 +11,9 @@ function SideBar() {
       <Image src={"/ScanX_Logo.png"} alt="logo" width={60} height={60} />
 
       <div className="pt-5">
+        <UploadPdf>
         <Button className="w-full">+ Upload PDF</Button>
+        </UploadPdf>
       </div>
       <div className="flex gap-2 items-center p-2 mt-10 hover:bg-slate-100 rounded-lg cursor-pointer">
         <LayoutGridIcon />
