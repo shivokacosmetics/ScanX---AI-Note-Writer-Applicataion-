@@ -7,14 +7,14 @@ import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Loader2Icon } from "lucide-react";
 function UploadPdf({ children }) {
-  const generateUploadUrl = useMutation(api.fileStorage.generateUploadUrl);
+  const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
 
   const onFileSelect = (event) => {
     setFile(event.target.files[0]);
   };
-  const onUpload = async () => {
+  const OnUpload = async () => {
     setLoading(true);
     // Step 1: Get a short-lived upload URL
     const postUrl = await generateUploadUrl();
@@ -26,6 +26,7 @@ function UploadPdf({ children }) {
     });
     const { storageId } = await result.json();
     console.log("StorageId", storageId);
+    
     setLoading(false);
     
   };
@@ -60,7 +61,7 @@ function UploadPdf({ children }) {
                 Close
               </Button>
             </DialogClose>
-            <Button onClick={onUpload}>
+            <Button onClick={OnUpload}>
               {loading ? <Loader2Icon className="animate-spin" /> : "Upload"}
               Upload
             </Button>
