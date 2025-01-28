@@ -4,8 +4,7 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
 import { api } from "./../convex/_generated/api";
 import { useEffect } from "react";
-import Image from "next/image";
-
+import Image from "next/image";// Image component from Next.js
 
 export default function Home() {
   const { user } = useUser();
@@ -31,8 +30,10 @@ export default function Home() {
       Hello
       <Button>Click</Button>
       <br />
-      <Button>Hello</Button>//Button
+      <Button>Hello</Button> 
+      
 
     </div>
   );
 }
+//
