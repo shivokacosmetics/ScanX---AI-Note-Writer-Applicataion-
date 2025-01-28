@@ -8,7 +8,6 @@ import { api } from "../../../convex/_generated/api";
 import { Loader2Icon } from "lucide-react";
 import uuid4 from "uuid4";
 import { useUser } from "@clerk/nextjs";
-import { log } from "console";
 function UploadPdf({ children }) {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const addFileEntry = useMutation(api.pdfStorage.AddFileEntryToDb);
