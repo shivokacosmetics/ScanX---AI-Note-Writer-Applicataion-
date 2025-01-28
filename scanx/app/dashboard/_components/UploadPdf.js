@@ -6,10 +6,16 @@ import { Button } from "../../../components/components/ui/button";
 import { useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Loader2Icon } from "lucide-react";
+import uuid4 from "uuid4";
+import { useUser } from "@clerk/nextjs";
+import { log } from "console";
 function UploadPdf({ children }) {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
+  const addFileEntry = useMutation(api.pdfStorage.AddFileEntryToDb);
+  const {user}=useUser();
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
+  const [fileName, setFileName] = useState();
 
   const onFileSelect = (event) => {
     setFile(event.target.files[0]);
@@ -26,10 +32,26 @@ function UploadPdf({ children }) {
     });
     const { storageId } = await result.json();
     console.log("StorageId", storageId);
+    // Step 3: Create a new FileEntry record in the database
+    
+    
+    const fileId= uuid4();
+    const resp = await addFileEntry({
+      fileId:fileId,
+      fileName:fileName??'Untitled File',
+      storageId:storageId,
+      createBy:user?.primaryEmailAddress?.emailAddress,
+    })
+    console.log(resp);
     
     setLoading(false);
     
-  };
+  }; 
+  
+console.log('');
+
+
+  
   
 
   return (
@@ -50,7 +72,7 @@ function UploadPdf({ children }) {
                   />
                 </div>
                 <div className="mt-5">
-                  <Input placeholder="File Name" />
+                  <Input placeholder="File Name" onChange={(e)=>setFileName(e.target.value)}/>
                 </div>
               </div>
             </DialogDescription>
@@ -62,7 +84,7 @@ function UploadPdf({ children }) {
               </Button>
             </DialogClose>
             <Button onClick={OnUpload}>
-              {loading ? <Loader2Icon className="animate-spin" /> : "Upload"}
+              {loading ? <Loader2Icon className="animate-spin" /> : ""}
               Upload
             </Button>
           </DialogFooter>
