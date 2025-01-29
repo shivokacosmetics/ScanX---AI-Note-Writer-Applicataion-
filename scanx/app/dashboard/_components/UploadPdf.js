@@ -1,6 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import {Dialog,DialogClose,DialogContent,DialogDescription,DialogFooter,DialogHeader,DialogTitle,DialogTrigger} from "../../../components/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../../components/components/ui/dialog";
 import { Input } from "../../../components/components/ui/input";
 import { Button } from "../../../components/components/ui/button";
 import { useMutation } from "convex/react";
@@ -11,8 +20,8 @@ import { useUser } from "@clerk/nextjs";
 function UploadPdf({ children }) {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const addFileEntry = useMutation(api.pdfStorage.AddFileEntryToDb);
-  const getFileUrl=useMutation(api.pdfStorage.getFileUrl);
-  const {user}=useUser();
+  const getFileUrl = useMutation(api.pdfStorage.getFileUrl); //const getFileUrl
+  const { user } = useUser();
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState();
@@ -33,28 +42,22 @@ function UploadPdf({ children }) {
     const { storageId } = await result.json();
     console.log("StorageId", storageId);
     // Step 3: Create a new FileEntry record in the database
-    
-    
-    const fileId= uuid4();
-    const fileUrl = await getFileUrl({storageId:storageId})
+
+    const fileId = uuid4();
+    const fileUrl = await getFileUrl({ storageId: storageId });
     const resp = await addFileEntry({
-      fileId:fileId,
-      fileName:fileName??'Untitled File',
-      storageId:storageId,
-      createBy:user?.primaryEmailAddress?.emailAddress,
-      fileUrl:fileUrl,
-    })
+      fileId: fileId,
+      fileName: fileName ?? "Untitled File",
+      storageId: storageId,
+      createBy: user?.primaryEmailAddress?.emailAddress,
+      fileUrl: fileUrl,
+    });
     console.log(resp);
-    
+
     setLoading(false);
-    
-  }; 
-  
-console.log('');
+  };
 
-
-  
-  
+  console.log("");
 
   return (
     <div>
@@ -74,7 +77,10 @@ console.log('');
                   />
                 </div>
                 <div className="mt-5">
-                  <Input placeholder="File Name" onChange={(e)=>setFileName(e.target.value)}/>
+                  <Input
+                    placeholder="File Name"
+                    onChange={(e) => setFileName(e.target.value)}
+                  />
                 </div>
               </div>
             </DialogDescription>
