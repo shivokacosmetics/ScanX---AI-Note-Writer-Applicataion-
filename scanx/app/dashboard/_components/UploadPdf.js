@@ -11,6 +11,7 @@ import { useUser } from "@clerk/nextjs";
 function UploadPdf({ children }) {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const addFileEntry = useMutation(api.pdfStorage.AddFileEntryToDb);
+  const getFileUrl=useMutation(api.pdfStorage.getFileUrl);
   const {user}=useUser();
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
@@ -35,11 +36,13 @@ function UploadPdf({ children }) {
     
     
     const fileId= uuid4();
+    const fileUrl = await getFileUrl({storageId:storageId})
     const resp = await addFileEntry({
       fileId:fileId,
       fileName:fileName??'Untitled File',
       storageId:storageId,
       createBy:user?.primaryEmailAddress?.emailAddress,
+      fileUrl:fileUrl,
     })
     console.log(resp);
     
