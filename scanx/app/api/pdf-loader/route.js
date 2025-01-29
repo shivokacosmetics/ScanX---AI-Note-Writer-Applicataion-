@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { WebPDFLoader } from "@langchain/community/document_loaders/web/pdf";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 const PdfUrl =
-  "https://optimistic-dog-721.convex.cloud/api/storage/940d7614-b585-4329-9fbd-9c309053255e";
+  "https://optimistic-dog-721.convex.cloud/api/storage/9c0ecf47-8638-44bd-909b-8d5b9da0cd33";
 export async function GET(req) {
   //load pdf
   const response = await fetch(PdfUrl);
@@ -12,7 +13,18 @@ export async function GET(req) {
 
   let pdfTextContent = "";
   docs.forEach((doc) => {
-    pdfTextContent = pdfTextContent += doc.text;
+    pdfTextContent = pdfTextContent + doc.pageContent;
   });
-  return NextResponse.json({ Result: docs });
+
+  //split test into small chunks
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 100,
+    chunkOverlap: 20,
+  });
+  const output = await splitter.createDocuments([pdfTextContent]);
+  let splitterList = [];
+  output.forEach((doc) => {
+    splitterList.push(doc.pageContent);
+  });
+  return NextResponse.json({ Result: splitterList });
 }
