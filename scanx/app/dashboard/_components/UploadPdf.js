@@ -18,6 +18,7 @@ import { Loader2Icon } from "lucide-react";
 import uuid4 from "uuid4";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
+
 function UploadPdf({ children }) {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const addFileEntry = useMutation(api.pdfStorage.AddFileEntryToDb);
@@ -33,34 +34,32 @@ function UploadPdf({ children }) {
   const OnUpload = async () => {
     setLoading(true);
     // Step 1: Get a short-lived upload URL
-    const postUrl = await generateUploadUrl();
-    // Step 2: POST the file to the URL
-    const result = await fetch(postUrl, {
-      method: "POST",
-      headers: { "Content-Type": file?.type },
-      body: file,
-    });
-    const { storageId } = await result.json();
-    console.log("StorageId", storageId);
-    // Step 3: Create a new FileEntry record in the database
+    // const postUrl = await generateUploadUrl();
+    // // Step 2: POST the file to the URL
+    // const result = await fetch(postUrl, {
+    //   method: "POST",
+    //   headers: { "Content-Type": file?.type },
+    //   body: file,
+    // });
+    // const { storageId } = await result.json();
+    // console.log("StorageId", storageId);
+    // // Step 3: Create a new FileEntry record in the database
 
-    const fileId = uuid4();
-    const fileUrl = await getFileUrl({ storageId: storageId });
-    const resp = await addFileEntry({
-      fileId: fileId,
-      fileName: fileName ?? "Untitled File",
-      storageId: storageId,
-      createBy: user?.primaryEmailAddress?.emailAddress,
-      fileUrl: fileUrl,
-    });
-    console.log(resp);
-    // //apicall
-    // const res = await axios.get("/api/pdf-loader");
-    //  console.log(res.data.result);
+    // const fileId = uuid4();
+    // const fileUrl = await getFileUrl({ storageId: storageId });
+    // const resp = await addFileEntry({
+    //   fileId: fileId,
+    //   fileName: fileName ?? "Untitled File",
+    //   storageId: storageId,
+    //   createBy: user?.primaryEmailAddress?.emailAddress,
+    //   fileUrl: fileUrl,
+    // });
+    // console.log(resp);
+    // Api call to Fetcch PDF Process data
+    const ApiResp = await axios.get('/api/pdf-loader');
+    console.log(ApiResp.data.Result);
     setLoading(false);
   };
-
-  console.log("");
 
   return (
     <div>

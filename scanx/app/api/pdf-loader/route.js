@@ -3,7 +3,7 @@ import { WebPDFLoader } from "@langchain/community/document_loaders/web/pdf";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 const PdfUrl =
-  "https://optimistic-dog-721.convex.cloud/api/storage/9c0ecf47-8638-44bd-909b-8d5b9da0cd33";
+  "https://optimistic-dog-721.convex.cloud/api/storage/8c1832f4-6296-41e2-af12-5169ad6967d5";
 export async function GET(req) {
   //load pdf
   const response = await fetch(PdfUrl);
