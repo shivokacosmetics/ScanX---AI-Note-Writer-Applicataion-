@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.9.14",
+    "@google/generative-ai": "^0.21.0",
     "@langchain/community": "^0.3.27",
-    "@langchain/core": "^0.3.36",
+    "@langchain/core": "^0.3.37",
+    "@langchain/google-genai": "^0.1.7",
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-popover": "^1.1.5",
     "@radix-ui/react-progress": "^1.1.1",

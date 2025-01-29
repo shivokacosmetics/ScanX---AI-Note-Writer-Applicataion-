@@ -56,7 +56,7 @@ function UploadPdf({ children }) {
     // });
     // console.log(resp);
     // Api call to Fetcch PDF Process data
-    const ApiResp = await axios.get('/api/pdf-loader');
+    const ApiResp = await axios.get("/api/pdf-loader");
     console.log(ApiResp.data.Result);
     setLoading(false);
   };
