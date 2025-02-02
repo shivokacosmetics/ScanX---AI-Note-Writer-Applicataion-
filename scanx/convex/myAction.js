@@ -1,9 +1,7 @@
 import { ConvexVectorStore } from "@langchain/community/vectorstores/convex";
-// import { OpenAIEmbeddings } from "@langchain/openai";
 import { action } from "./_generated/server.js";
-import { action } from "./_generated/server.js";
-import { TaskType } from "@goggle/generative-ai";
-import { GoogleGenerativeAIEmbeddings } from "@langchain/google";
+import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
+import { TaskType } from "@google/generative-ai";
 export const ingest = action({
   args: {},
   handler: async (ctx) => {
@@ -11,12 +9,12 @@ export const ingest = action({
       ["Hello world", "Bye bye", "What's this?"],
       [{ prop: 2 }, { prop: 1 }, { prop: 3 }],
       new GoogleGenerativeAIEmbeddings({
-        apiKey: "AIzaSyBo4YEEBKLQU0Xhxx8RTSIdWB97rvoOJS0",
+        apiKey: "AIzaSyBo4YEEBKLQU0Xhxx8RTSIdWB97rvoOJS0",  // Use environment variable
         model: "text-embedding-004", // 768 dimensions
         taskType: TaskType.RETRIEVAL_DOCUMENT,
         title: "Document title",
       }),
-      { ctx }
+      {ctx}
     );
   },
 });

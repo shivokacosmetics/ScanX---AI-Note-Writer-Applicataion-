@@ -1,14 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+import {Dialog,DialogClose,DialogContent,DialogDescription,DialogFooter,DialogHeader,DialogTitleDialogTrigger,
 } from "../../../components/components/ui/dialog";
 import { Input } from "../../../components/components/ui/input";
 import { Button } from "../../../components/components/ui/button";
