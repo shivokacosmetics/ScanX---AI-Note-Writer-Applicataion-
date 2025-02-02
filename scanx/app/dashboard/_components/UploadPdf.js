@@ -12,7 +12,7 @@ import {
 } from "../../../components/components/ui/dialog";
 import { Input } from "../../../components/components/ui/input";
 import { Button } from "../../../components/components/ui/button";
-import { useMutation } from "convex/react";
+import { useAction, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { Loader2Icon } from "lucide-react";
 import uuid4 from "uuid4";
@@ -23,6 +23,7 @@ function UploadPdf({ children }) {
   const generateUploadUrl = useMutation(api.pdfStorage.generateUploadUrl);
   const addFileEntry = useMutation(api.pdfStorage.AddFileEntryToDb);
   const getFileUrl = useMutation(api.pdfStorage.getFileUrl); //const getFileUrl
+  const embbedDocument = useAction(api.myAction.ingest);
   const { user } = useUser();
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
@@ -58,6 +59,7 @@ function UploadPdf({ children }) {
     // Api call to Fetcch PDF Process data
     const ApiResp = await axios.get("/api/pdf-loader");
     console.log(ApiResp.data.Result);
+    embbedDocument({});
     setLoading(false);
   };
 
