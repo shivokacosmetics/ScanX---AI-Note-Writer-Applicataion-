@@ -28,7 +28,7 @@ function UploadPdf({ children }) {
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState();
-
+  const [open, setOpen] = useState(false);
   const onFileSelect = (event) => {
     setFile(event.target.files[0]);
   };
@@ -59,18 +59,23 @@ function UploadPdf({ children }) {
     // Api call to Fetcch PDF Process data
     const ApiResp = await axios.get("/api/pdf-loader?pdfUrl=" + fileUrl);
     console.log(ApiResp.data.Result);
-    // const embdeddresult = embbedDocument({
-    //   splitText: ApiResp.data.Result,
-    //   fileId: "123",
-    // });
-    // console.log(embdeddresult);
+    await embbedDocument({
+      splitText: ApiResp.data.Result,
+      fileId: fileId,
+    });
+    //console.log(embdeddresult);
     setLoading(false);
+    setOpen(false);
   };
 
   return (
     <div>
-      <Dialog>
-        <DialogTrigger asChild>{children}</DialogTrigger>
+      <Dialog open={open}>
+        <DialogTrigger asChild>
+          <Button onClick={() => setOpen(true)} className="w-full">
+            + Upload PDF Files
+          </Button>
+        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Upload Pdf File</DialogTitle>
@@ -99,7 +104,7 @@ function UploadPdf({ children }) {
                 Close
               </Button>
             </DialogClose>
-            <Button onClick={OnUpload}>
+            <Button onClick={OnUpload} disabled={loading}>
               {loading ? <Loader2Icon className="animate-spin" /> : ""}
               Upload
             </Button>
