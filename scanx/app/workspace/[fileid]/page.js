@@ -9,6 +9,10 @@ function Workspace() {
   return (
     <div>
       <Workspace_header />
+      <div>
+        <div>{/*Text Ediotr*/}</div>
+        <div>{/*PDF Viewer*/}</div>
+      </div>
     </div>
   );
 }
