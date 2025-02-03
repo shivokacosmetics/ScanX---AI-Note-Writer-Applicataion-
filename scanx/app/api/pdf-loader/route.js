@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 import { WebPDFLoader } from "@langchain/community/document_loaders/web/pdf";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
-const PdfUrl =
-  "https://optimistic-dog-721.convex.cloud/api/storage/8c1832f4-6296-41e2-af12-5169ad6967d5";
+// const PdfUrl =
+//   "https://optimistic-dog-721.convex.cloud/api/storage/8c1832f4-6296-41e2-af12-5169ad6967d5";
 export async function GET(req) {
+  const reqUrl = req.url;
+  const { searchParams } = new URL(reqUrl);
+  const pdfUrl = searchParams.get("pdfUrl");
+  console.log(pdfUrl);
   //load pdf
-  const response = await fetch(PdfUrl);
+  const response = await fetch(pdfUrl);
   const data = await response.blob();
   const loader = new WebPDFLoader(data);
   const docs = await loader.load();

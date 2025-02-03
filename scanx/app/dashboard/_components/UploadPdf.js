@@ -34,36 +34,36 @@ function UploadPdf({ children }) {
   };
   const OnUpload = async () => {
     setLoading(true);
-    // Step 1: Get a short-lived upload URL
-    // const postUrl = await generateUploadUrl();
-    // // Step 2: POST the file to the URL
-    // const result = await fetch(postUrl, {
-    //   method: "POST",
-    //   headers: { "Content-Type": file?.type },
-    //   body: file,
-    // });
-    // const { storageId } = await result.json();
-    // console.log("StorageId", storageId);
-    // // Step 3: Create a new FileEntry record in the database
+    //Step 1: Get a short-lived upload URL
+    const postUrl = await generateUploadUrl();
+    // Step 2: POST the file to the URL
+    const result = await fetch(postUrl, {
+      method: "POST",
+      headers: { "Content-Type": file?.type },
+      body: file,
+    });
+    const { storageId } = await result.json();
+    console.log("StorageId", storageId);
+    // Step 3: Create a new FileEntry record in the database
 
-    // const fileId = uuid4();
-    // const fileUrl = await getFileUrl({ storageId: storageId });
-    // const resp = await addFileEntry({
-    //   fileId: fileId,
-    //   fileName: fileName ?? "Untitled File",
-    //   storageId: storageId,
-    //   createBy: user?.primaryEmailAddress?.emailAddress,
-    //   fileUrl: fileUrl,
-    // });
+    const fileId = uuid4();
+    const fileUrl = await getFileUrl({ storageId: storageId });
+    const resp = await addFileEntry({
+      fileId: fileId,
+      fileName: fileName ?? "Untitled File",
+      storageId: storageId,
+      createBy: user?.primaryEmailAddress?.emailAddress,
+      fileUrl: fileUrl,
+    });
     // console.log(resp);
     // Api call to Fetcch PDF Process data
-    const ApiResp = await axios.get("/api/pdf-loader");
+    const ApiResp = await axios.get("/api/pdf-loader?pdfUrl=" + fileUrl);
     console.log(ApiResp.data.Result);
-    const embdeddresult = embbedDocument({
-      splitText: ApiResp.data.Result,
-      fileId: "123",
-    });
-    console.log(embdeddresult);
+    // const embdeddresult = embbedDocument({
+    //   splitText: ApiResp.data.Result,
+    //   fileId: "123",
+    // });
+    // console.log(embdeddresult);
     setLoading(false);
   };
 
