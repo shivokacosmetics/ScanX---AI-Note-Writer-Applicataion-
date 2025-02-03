@@ -1,6 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import {Dialog,DialogClose,DialogContent,DialogDescription,DialogFooter,DialogHeader,DialogTitle,DialogTrigger,
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "../../../components/components/ui/dialog";
 import { Input } from "../../../components/components/ui/input";
 import { Button } from "../../../components/components/ui/button";
@@ -51,7 +59,11 @@ function UploadPdf({ children }) {
     // Api call to Fetcch PDF Process data
     const ApiResp = await axios.get("/api/pdf-loader");
     console.log(ApiResp.data.Result);
-    embbedDocument({});
+    const embdeddresult = embbedDocument({
+      splitText: ApiResp.data.Result,
+      fileId: "123",
+    });
+    console.log(embdeddresult);
     setLoading(false);
   };
 
