@@ -5,6 +5,7 @@ function Dashboard() {
         <div>
             Workspace
             {/* Added by l */}
+            {/* Hello */}
         </div>
     );
 }
