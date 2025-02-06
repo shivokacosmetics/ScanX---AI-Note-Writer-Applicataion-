@@ -78,7 +78,7 @@ function UploadPdf({ children }) {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Upload Pdf File</DialogTitle>
+            <DialogTitle>Upload Pdf F ile</DialogTitle>
             <DialogDescription asChild>
               <div className="">
                 <div className="flex  mt-5 gap-2 p-3 rounded-md border">
