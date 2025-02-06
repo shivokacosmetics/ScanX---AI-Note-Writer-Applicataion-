@@ -31,8 +31,7 @@ function Workspace() {
       <div>
         <div>{/*Text Editor*/}</div>
         <div>
-          {/*PDF Viewer*/}
-          <PdfViewer />
+          <PdfViewer fileUrl={fileInfo?.fileUrl}/>
         </div>
       </div>
     </div>
