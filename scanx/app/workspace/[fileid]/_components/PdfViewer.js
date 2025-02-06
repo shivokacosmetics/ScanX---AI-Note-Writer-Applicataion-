@@ -1,7 +1,8 @@
 // import { console } from "inspector";
 import React from "react";
 
-function PdfViewer() {
+function PdfViewer({ fileUrl }) {
+  console.log(fileUrl);
   return (
     <div>
       <h1>
