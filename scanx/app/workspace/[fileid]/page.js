@@ -2,12 +2,12 @@
 import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
 import Workspace_header from "./_components/workspace_header";
-import PdfViewer from "./_components/PdfViewer";
+import PdfViewer from "../../workspace/[fileid]/_components/PdfViewer";
 import { useQueries } from "convex/react";
 import { v } from "convex/values";
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
-import { query } from "../../convex/_generated/../_generated/server";
+import { query } from "../../../convex/_generated/server";
 // import { query } from "./_generated/server";
 
 // export const GetFileRecord = query(async ({ db }, { fileId }) => {
@@ -19,7 +19,7 @@ export const GetFileRecord = query(async ({ db }, { fileId }) => {
 
 function Workspace() {
   const { fileid } = useParams();
-  const fileInfo = useQuery(api.fileStorage.GetFileRecord, {
+  const fileInfo = useQuery(api.pdfStorage.GetFileRecord, {
     fileId: fileid,
   });
   useEffect(() => {
