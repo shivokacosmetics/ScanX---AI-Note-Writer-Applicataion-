@@ -120,3 +120,6 @@ body {
     --radius: 0.5rem;
   }
 }
+span[data-highlight] {
+  background-color: inherit !important;
+}

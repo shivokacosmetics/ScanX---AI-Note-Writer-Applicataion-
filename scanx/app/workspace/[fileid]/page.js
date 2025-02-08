@@ -9,6 +9,7 @@ import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { query } from "../../../convex/_generated/server";
 import TextEditor from "./_components/TextEditor";
+
 // import { query } from "./_generated/server";
 
 // export const GetFileRecord = query(async ({ db }, { fileId }) => {
