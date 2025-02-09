@@ -12,8 +12,11 @@ function EditorExtension({ editor }) {
         <div className="button-group ">
           {editor && ( // Conditionally render when editor is available
             <div>
+
+            
               <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
+                //comment is added
                 className={editor.isActive("bold") ? "text-red-600" : ""}
               >
                 <Bold size={24} />
