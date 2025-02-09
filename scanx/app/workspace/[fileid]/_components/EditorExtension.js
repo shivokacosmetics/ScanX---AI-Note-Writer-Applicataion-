@@ -3,7 +3,7 @@ import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { EditiorExtension } from "./EditiorExtension";
+import { EditiorExtension } from "./EditorExtension";
 import {
   Bold,
   Heading1,
