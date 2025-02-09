@@ -3,18 +3,9 @@ import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { EditiorExtension } from "./EditorExtension";
-import {
-  Bold,
-  Heading1,
-  Heading2,
-  Heading3Icon,
-  Highlighter,
-  Italic,
-  UnderlineIcon,
-} from "lucide-react";
+import {Bold,Heading1,Heading2,Heading3Icon,Highlighter,Italic,UnderlineIcon} from "lucide-react";
 
-export function EditorExtension({ editor }) {
+function EditorExtension({ editor }) {
   return (
     <div className="button-group">
       <div className="control-group flex gap-20">
@@ -93,3 +84,5 @@ export function EditorExtension({ editor }) {
     </div>
   );
 }
+
+export default EditorExtension;
