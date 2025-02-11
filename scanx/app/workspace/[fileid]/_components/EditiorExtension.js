@@ -3,17 +3,46 @@ import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import {Bold,Heading1,Heading2,Heading3Icon,Highlighter,Italic,UnderlineIcon} from "lucide-react";
-
+import {
+  Bold,
+  Heading1,
+  Heading2,
+  Heading3Icon,
+  Highlighter,
+  Italic,
+  Sparkles,
+  UnderlineIcon,
+} from "lucide-react";
+import { useAction } from "convex/react";
+import { api } from "../convex/_generated/api";
+import { Editor } from "@tiptap/react";
+// import { useParams } from "next/router";
+import { fileId } from "convex/values";
+import { useParams } from "next/navigation"; // Changed from next/router
 function EditorExtension({ editor }) {
+  const { fileid } = useParams();
+  const SearchAI = useAction(api.myAction.search);
+  const onAiClick = async () => {
+    // AI logic
+    //console.log("AI Clicked");
+    const selectedText = editor.state.doc.textBetween(
+      editor.state.selection.from,
+      editor.state.selection.to,
+      " "
+    );
+    console.log(selectedText);
+    const result = await SearchAI({
+      query: selectedText,
+      fileId: fileid,
+    });
+    console.log("AI Result:", result);
+  };
   return (
     <div className="button-group">
       <div className="control-group flex gap-20">
         <div className="button-group ">
           {editor && ( // Conditionally render when editor is available
             <div>
-
-            
               <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 //comment is added
@@ -79,6 +108,12 @@ function EditorExtension({ editor }) {
                 }
               >
                 <Heading3Icon size={24} />
+              </button>
+              <button
+                onClick={() => onAiClick()}
+                className={"hover : text-purple-600"}
+              >
+                <Sparkles />
               </button>
             </div>
           )}
