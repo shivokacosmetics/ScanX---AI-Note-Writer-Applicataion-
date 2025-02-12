@@ -14,8 +14,11 @@ import {
   UnderlineIcon,
 } from "lucide-react";
 import { useAction } from "convex/react";
-import { api } from "../convex/_generated/api";
+//import { api } from "../convex/_generated/api";
+// import { api } from "../convex/_generated/api";
 import { Editor } from "@tiptap/react";
+import { api } from "@convex/api";
+
 // import { useParams } from "next/router";
 import { fileId } from "convex/values";
 import { useParams } from "next/navigation"; // Changed from next/router

@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/convex/*": ["convex/*"]
+      // "@/convex/*": ["convex/*"]
+      "@convex/*": ["convex/_generated/*"]
     }
   }
 }
