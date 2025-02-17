@@ -22,6 +22,7 @@ import { api } from "@convex/api";
 // import { useParams } from "next/router";
 import { fileId } from "convex/values";
 import { useParams } from "next/navigation"; // Changed from next/router
+import { chatSession } from "configs/AIModel";
 function EditorExtension({ editor }) {
   const { fileid } = useParams();
   const SearchAI = useAction(api.myAction.search);
@@ -50,6 +51,8 @@ function EditorExtension({ editor }) {
       " and with the given content as an answer " +
       "please give appropriate answer in HTML format . The answer content is :" +
       AllUnformattedAns;
+    const AiModelResult = await chatSession.sendMessage(PROMPT);
+    console.log(AiModelResult.response.text());
   };
   return (
     <div className="button-group">
