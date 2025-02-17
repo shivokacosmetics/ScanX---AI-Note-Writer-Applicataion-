@@ -38,7 +38,8 @@ function EditorExtension({ editor }) {
       query: selectedText,
       fileId: fileid,
     });
-    console.log("AI Result:", result);
+
+    console.log("Unformatted Result:", result);
   };
   return (
     <div className="button-group">

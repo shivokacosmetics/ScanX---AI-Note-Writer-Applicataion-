@@ -23,7 +23,7 @@ export const ingest = action({
     return "Ingested successfully";
   },
 });
-export const search = action({
+export const SearchAI = action({
   args: {
     query: v.string(),
     fileId: v.string(),
