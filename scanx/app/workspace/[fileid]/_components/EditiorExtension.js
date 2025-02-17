@@ -38,8 +38,18 @@ function EditorExtension({ editor }) {
       query: selectedText,
       fileId: fileid,
     });
-
-    console.log("Unformatted Result:", result);
+    const UnformattedAns = JSON.parse(result);
+    let AllUnformattedAns = " ";
+    UnformattedAns &&
+      AllUnformattedAns.forEach((item) => {
+        AllUnformattedAns = AllUnformattedAns + item.pageContent;
+      });
+    const PROMPT =
+      "For question :" +
+      selectedText +
+      " and with the given content as an answer " +
+      "please give appropriate answer in HTML format . The answer content is :" +
+      AllUnformattedAns;
   };
   return (
     <div className="button-group">
