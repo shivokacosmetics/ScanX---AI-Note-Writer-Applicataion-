@@ -25,7 +25,7 @@ import { useParams } from "next/navigation"; // Changed from next/router
 import { chatSession } from "configs/AIModel";
 function EditorExtension({ editor }) {
   const { fileid } = useParams();
-  const SearchAI = useAction(api.myAction.search);
+  const SearchAI = useAction(api.myAction.SearchAI);
   const onAiClick = async () => {
     // AI logic
     //console.log("AI Clicked");
@@ -41,9 +41,8 @@ function EditorExtension({ editor }) {
     });
     const UnformattedAns = JSON.parse(result);
     let AllUnformattedAns = " ";
-    UnformattedAns &&
-      AllUnformattedAns.forEach((item) => {
-        AllUnformattedAns = AllUnformattedAns + item.pageContent;
+    UnformattedAns&&UnformattedAns.forEach((item) => {
+        AllUnformattedAns=AllUnformattedAns+item.pageContent;
       });
     const PROMPT =
       "For question :" +

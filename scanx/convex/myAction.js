@@ -31,7 +31,7 @@ export const SearchAI = action({
   handler: async (ctx, args) => {
     const vectorStore = new ConvexVectorStore(
       new GoogleGenerativeAIEmbeddings({
-        apiKey: "AIzaSyBo4YEEBKLQU0Xhxx8RTSIdWB97rvoOJS0", // Use environment variable
+        apiKey: "AIzaSyDQGHtVE5HDEXy4gXXzLsU3fLfVaP9ao8w", // Use environment variable
         model: "text-embedding-004", // 768 dimensions
         taskType: TaskType.RETRIEVAL_DOCUMENT,
         title: "Document title",
