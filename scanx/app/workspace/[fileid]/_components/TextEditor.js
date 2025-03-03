@@ -45,9 +45,12 @@ import Underline from "@tiptap/extension-underline";
 import dynamic from "next/dynamic";
 
 // Ensure correct import and disable SSR (for hydration errors)
-const EditorExtension = dynamic(() => import("./EditorExtension"), {
-  ssr: false,
-});
+const EditorExtension = dynamic(
+  () => import("../_components/EditiorExtension"),
+  {
+    ssr: false,
+  }
+);
 
 function TextEditor() {
   const editor = useEditor({
