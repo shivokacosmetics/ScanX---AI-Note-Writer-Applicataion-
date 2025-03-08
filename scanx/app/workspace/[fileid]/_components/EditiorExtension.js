@@ -172,7 +172,7 @@ import { useAction } from "convex/react";
 import { api } from "@convex/api";
 import { useParams } from "next/navigation";
 import { chatSession } from "configs/AIModel";
-
+import { toast } from "sonner";
 function EditorExtension({ editor }) {
   const params = useParams();
   const fileid = params?.fileid || ""; // Ensure fileid is defined
@@ -180,6 +180,7 @@ function EditorExtension({ editor }) {
   const SearchAI = useAction(api.myAction.SearchAI);
 
   const onAiClick = async () => {
+    toast("AI is working");
     if (!editor) return;
 
     const selectedText = editor.state.doc.textBetween(
