@@ -29,7 +29,7 @@ function Workspace() {
   }, [fileInfo]);
   return (
     <div>
-      <Workspace_header />
+      <Workspace_header fileName={fileInfo?.fileName ?? "No file name"} />
       <div className="grid grid-cols-2 gap-5">
         <div>
           {/*Text Editor*/}

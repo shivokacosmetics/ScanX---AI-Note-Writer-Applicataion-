@@ -180,7 +180,7 @@ function EditorExtension({ editor }) {
   const SearchAI = useAction(api.myAction.SearchAI);
 
   const onAiClick = async () => {
-    toast("AI is working");
+    toast("AI processing started...", { type: "info" });
     if (!editor) return;
 
     const selectedText = editor.state.doc.textBetween(
