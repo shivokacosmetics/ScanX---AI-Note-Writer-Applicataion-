@@ -35,11 +35,13 @@ function EditorExtension({ editor }) {
       " "
     );
     console.log(selectedText);
+
     const result = await SearchAI({
       query: selectedText,
       fileId: fileid,
     });
     const UnformattedAns = JSON.parse(result);
+
     let AllUnformattedAns = " ";
     UnformattedAns &&
       UnformattedAns.forEach((item) => {
@@ -53,6 +55,12 @@ function EditorExtension({ editor }) {
       AllUnformattedAns;
     const AiModelResult = await chatSession.sendMessage(PROMPT);
     console.log(AiModelResult.response.text());
+    const FinalAns = AiModelResult.response.text();
+
+    const AllText = editor.getHTML();
+    editor.commands.setContent(
+      AllText + "<p><strong>Answer:</strong>" + FinalAns + "</p>"
+    );
   };
   return (
     <div className="button-group">
