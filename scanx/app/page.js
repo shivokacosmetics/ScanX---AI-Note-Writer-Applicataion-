@@ -4,7 +4,7 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
 import { api } from "./../convex/_generated/api";
 import { useEffect } from "react";
-import Image from "next/image";// Image component from Next.js
+import Image from "next/image"; // Image component from Next.js
 
 export default function Home() {
   const { user } = useUser();
@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     if (user) {
-      user&&CheckUser();
+      user && CheckUser();
     }
   }, [user]);
   const CheckUser = async () => {
@@ -30,9 +30,7 @@ export default function Home() {
       Hello
       <Button>Click</Button>
       <br />
-      <Button>Hello</Button> 
-      
-
+      <Button>Hello</Button>
     </div>
   );
 }

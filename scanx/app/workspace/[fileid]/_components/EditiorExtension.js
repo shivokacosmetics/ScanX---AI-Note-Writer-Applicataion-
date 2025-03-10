@@ -168,17 +168,21 @@ import {
   Sparkles,
   UnderlineIcon,
 } from "lucide-react";
-import { useAction } from "convex/react";
+import { useAction, useMutation } from "convex/react";
 import { api } from "@convex/api";
 import { useParams } from "next/navigation";
 import { chatSession } from "configs/AIModel";
 import { toast } from "sonner";
+import { notes } from "../../../../convex/notes";
+import { useUser } from "@clerk/nextjs";
+
 function EditorExtension({ editor }) {
   const params = useParams();
   const fileid = params?.fileid || ""; // Ensure fileid is defined
 
   const SearchAI = useAction(api.myAction.SearchAI);
-
+  const saveNotes = useMutation(api.notes.addNotes);
+  const { user } = useUser();
   const onAiClick = async () => {
     toast("AI processing started...");
     if (!editor) return;
@@ -220,6 +224,12 @@ function EditorExtension({ editor }) {
     } catch (error) {
       console.error("Error in AI processing:", error);
     }
+
+    saveNotes({
+      notes: editor.getHTML(),
+      fileId: fileid,
+      createBy: user?.primaryEmailAddress?.emailAddress,
+    });
   };
 
   return (

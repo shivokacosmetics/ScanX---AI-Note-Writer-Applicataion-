@@ -28,7 +28,7 @@ export default defineSchema({
 
   notes: defineTable({
     fileId: v.string(),
-    note: v.string(),
+    notes: v.string(),
     createBy: v.string(),
   }),
 });
