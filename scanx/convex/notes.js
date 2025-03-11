@@ -46,7 +46,7 @@ export const addNotes = mutation({
       await ctx.db.insert("notes", {
         fileId: args.fileId,
         notes: args.notes, // ✅ Matching the expected key
-        createBy: args.createBy || "Unknown",
+        createBy: args.createBy,
       });
     } else {
       await ctx.db.patch(recordId[0].id, {
