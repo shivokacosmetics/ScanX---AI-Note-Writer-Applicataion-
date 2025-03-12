@@ -169,11 +169,10 @@ import {
   UnderlineIcon,
 } from "lucide-react";
 import { useAction, useMutation } from "convex/react";
-import { api } from "@convex/api";
+import { api } from "../../../../convex/_generated/api";
 import { useParams } from "next/navigation";
 import { chatSession } from "configs/AIModel";
 import { toast } from "sonner";
-import { notes } from "../../../../convex/notes";
 import { useUser } from "@clerk/nextjs";
 
 function EditorExtension({ editor }) {
@@ -228,7 +227,7 @@ function EditorExtension({ editor }) {
     saveNotes({
       notes: editor.getHTML(),
       fileId: fileid,
-      createBy: user?.primaryEmailAddress?.emailAddress,
+      createdBy: user?.primaryEmailAddress?.emailAddress,
     });
   };
 
