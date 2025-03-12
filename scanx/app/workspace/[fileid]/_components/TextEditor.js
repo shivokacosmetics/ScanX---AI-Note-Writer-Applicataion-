@@ -68,6 +68,7 @@ function TextEditor() {
       },
     },
   });
+  const GetNotes = () => {};
 
   if (!editor) return <p>Loading editor...</p>; // Prevent errors if `editor` is null
 
