@@ -35,6 +35,7 @@
 // }
 
 // export default TextEditor;
+import dynamic from "next/dynamic";
 
 import React from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
@@ -42,9 +43,9 @@ import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import Highlight from "@tiptap/extension-highlight";
 import Underline from "@tiptap/extension-underline";
-import dynamic from "next/dynamic";
-
-// Ensure correct import and disable SSR (for hydration errors)
+//import dynamic from "next/dynamic";
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 const EditorExtension = dynamic(
   () => import("../_components/EditiorExtension"),
   {
@@ -52,7 +53,11 @@ const EditorExtension = dynamic(
   }
 );
 
-function TextEditor() {
+function TextEditor({ fileId }) {
+  const notes = useQuery(api.notes.GetNotes, {
+    fileId: fileId,
+  });
+  console.log(notes);
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -68,7 +73,6 @@ function TextEditor() {
       },
     },
   });
-  const GetNotes = () => {};
 
   if (!editor) return <p>Loading editor...</p>; // Prevent errors if `editor` is null
 

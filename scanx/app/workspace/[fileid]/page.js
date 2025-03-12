@@ -6,15 +6,9 @@ import PdfViewer from "../../workspace/[fileid]/_components/PdfViewer";
 import { useQueries } from "convex/react";
 import { v } from "convex/values";
 import { useQuery } from "convex/react";
-import { api } from "../../../convex/_generated/api";
 import { query } from "../../../convex/_generated/server";
 import TextEditor from "./_components/TextEditor";
-
-// import { query } from "./_generated/server";
-
-// export const GetFileRecord = query(async ({ db }, { fileId }) => {
-//   return await db.get(fileId);
-// });
+import { api } from "../../../convex/_generated/api";
 export const GetFileRecord = query(async ({ db }, { fileId }) => {
   return await db.get(fileId);
 });
@@ -33,7 +27,7 @@ function Workspace() {
       <div className="grid grid-cols-2 gap-5">
         <div>
           {/*Text Editor*/}
-          <TextEditor />
+          <TextEditor fileId={fileid} />
         </div>
         <div>
           {/*PDF Viewer*/}
