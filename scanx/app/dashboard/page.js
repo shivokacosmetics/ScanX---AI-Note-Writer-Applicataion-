@@ -6,7 +6,7 @@ import { api } from "../../convex/_generated/api";
 
 function Dashboard() {
   const { user } = useUser();
-  const fileList = useQuery(api.fileStorage.GetUserFiles, {
+  const fileList = useQuery(api.pdfStorage.GetUserFiles, {
     userEmail: user?.primaryEmailAddress?.emailAddress,
   });
   console.log(fileList);
