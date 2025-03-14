@@ -58,6 +58,6 @@ export const GetUserFiles = query({
       .query("pdfFiles")
       .filter((q) => q.eq(q.field("createdBy"), args.userEmail))
       .collect();
-    return JSON.stringify(result);
+    return result;
   },
 });
