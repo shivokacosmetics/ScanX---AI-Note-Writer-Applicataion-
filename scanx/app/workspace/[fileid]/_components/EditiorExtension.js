@@ -173,12 +173,62 @@ import { api } from "../../../../convex/_generated/api";
 import { useParams } from "next/navigation";
 import { chatSession } from "configs/AIModel";
 import { toast } from "sonner";
-
+import { useUser } from "@clerk/nextjs";
 function EditorExtension({ editor }) {
   const params = useParams();
   const fileid = params?.fileid || ""; // Ensure fileid is defined
 
   const SearchAI = useAction(api.myAction.SearchAI);
+  const saveNotes = useMutation(api.notes.AddNotes);
+  const { user, isLoaded, isSignedIn } = useUser();
+  // const onAiClick = async () => {
+  //   toast("AI processing started...");
+  //   if (!editor) return;
+
+  //   const selectedText = editor.state.doc.textBetween(
+  //     editor.state.selection.from,
+  //     editor.state.selection.to,
+  //     " "
+  //   );
+
+  //   if (!selectedText.trim()) {
+  //     console.warn("No text selected for AI processing.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const result = await SearchAI({ query: selectedText, fileId: fileid });
+
+  //     const UnformattedAns =
+  //       typeof result === "string" ? JSON.parse(result) : result;
+  //     let AllUnformattedAns =
+  //       UnformattedAns?.map((item) => item.pageContent).join(" ") || "";
+
+  //     const PROMPT = `
+  //       For question: ${selectedText}
+  //       and with the given content as an answer,
+  //       please provide an appropriate answer in HTML format.
+  //       The answer content is: ${AllUnformattedAns}
+  //     `;
+
+  //     const AiModelResult = await chatSession.sendMessage(PROMPT);
+  //     const aiResponseText = await AiModelResult.response.text();
+  //     const FinalAns = aiResponseText.replace(/``|html/g, ""); // Remove unwanted syntax
+
+  //     const AllText = editor.getHTML();
+  //     editor.commands.setContent(
+  //       `${AllText}<p><strong>Answer:</strong> ${FinalAns}</p>`
+  //     );
+  //   } catch (error) {
+  //     console.error("Error in AI processing:", error);
+  //   }
+  //   saveNotes({
+  //     notes: editor.getHTML(),
+  //     fileId: fileid,
+  //     createdBy: user?.primaryEmailAddress?.emailAddress, // Now correctly defined
+  //   });
+  //   toast("AI processing completed.");
+  // };
   const onAiClick = async () => {
     toast("AI processing started...");
     if (!editor) return;
@@ -211,12 +261,41 @@ function EditorExtension({ editor }) {
 
       const AiModelResult = await chatSession.sendMessage(PROMPT);
       const aiResponseText = await AiModelResult.response.text();
-      const FinalAns = aiResponseText.replace(/``|html/g, ""); // Remove unwanted syntax
+      const FinalAns = aiResponseText.replace(/``|html/g, "");
 
       const AllText = editor.getHTML();
       editor.commands.setContent(
         `${AllText}<p><strong>Answer:</strong> ${FinalAns}</p>`
       );
+
+      // ✅ Fix: Ensure `user` exists before calling `saveNotes()`
+      if (!isLoaded) {
+        console.error("Clerk user data is still loading...");
+        return;
+      }
+
+      if (!isSignedIn) {
+        console.error("User is not signed in, skipping saveNotes()");
+        toast.error("You must be signed in to save notes.");
+        return;
+      }
+
+      if (!user || !user.primaryEmailAddress?.emailAddress) {
+        console.error("User data is missing, skipping saveNotes()");
+        return;
+      }
+
+      console.log("Saving notes with:", {
+        notes: editor.getHTML(),
+        fileId: fileid,
+        createdBy: user.primaryEmailAddress.emailAddress,
+      });
+
+      await saveNotes({
+        notes: editor.getHTML(),
+        fileId: fileid,
+        createdBy: user.primaryEmailAddress.emailAddress,
+      });
     } catch (error) {
       console.error("Error in AI processing:", error);
     }
