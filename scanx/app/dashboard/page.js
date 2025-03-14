@@ -1,13 +1,11 @@
-import React from 'react';
+import React from "react";
 
 function Dashboard() {
-    return (
-        <div>
-            Workspace
-            {/* Added by l */}
-            {/* Hello */}
-        </div>
-    );
+  return (
+    <div>
+      <h2 className="font-medium text-4xl">Workspace</h2>
+    </div>
+  );
 }
 
 export default Dashboard;
