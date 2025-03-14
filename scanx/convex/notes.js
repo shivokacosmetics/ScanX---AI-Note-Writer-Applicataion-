@@ -24,16 +24,15 @@ export const AddNotes = mutation({
     }
   },
 });
+export const GetNotes = async ({ fileId }, ctx) => {
+  if (!fileId) {
+    throw new Error("fileId is required");
+  }
 
-export const GetNotes = query({
-  args: {
-    fileId: v.string(),
-  },
-  handler: async (ctx, args) => {
-    const result = await ctx.db
-      .query("notes")
-      .filter((q) => q.eq(q.field("fileId"), args.field))
-      .collect();
-    return result[0]?.notes;
-  },
-});
+  const note = await ctx.db
+    .query("notes")
+    .filter((q) => q.eq(q.field("fileId"), fileId))
+    .first(); // Make sure to fetch the first matching note
+
+  return note ? note.notes : "";
+};

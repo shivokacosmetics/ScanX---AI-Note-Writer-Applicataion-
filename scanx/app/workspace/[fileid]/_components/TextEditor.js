@@ -35,17 +35,75 @@
 // }
 
 // export default TextEditor;
-import dynamic from "next/dynamic";
 
-import React from "react";
+// import dynamic from "next/dynamic";
+
+// import React, { useEffect } from "react";
+// import { useEditor, EditorContent } from "@tiptap/react";
+// import StarterKit from "@tiptap/starter-kit";
+// import Placeholder from "@tiptap/extension-placeholder";
+// import Highlight from "@tiptap/extension-highlight";
+// import Underline from "@tiptap/extension-underline";
+// //import dynamic from "next/dynamic";
+// import { useQuery } from "convex/react";
+// import { api } from "../../../../convex/_generated/api";
+// const EditorExtension = dynamic(
+//   () => import("../_components/EditiorExtension"),
+//   {
+//     ssr: false,
+//   }
+// );
+
+// function TextEditor({ fileId }) {
+//   const notes = useQuery(api.notes.GetNotes, {
+//     fileId: fileId,
+//   });
+//   console.log(notes);
+//   const editor = useEditor({
+//     extensions: [
+//       StarterKit,
+//       Underline,
+//       Highlight.configure({ multicolors: true }),
+//       Placeholder.configure({
+//         placeholder: "Start typing...",
+//       }),
+//     ],
+//     editorProps: {
+//       attributes: {
+//         class: "focus:outline-none h-screen p-5",
+//       },
+//     },
+//   });
+//   useEffect(() => {
+//     if (editor && notes !== undefined) {
+//       editor.commands.setContent(notes || ""); // Set content only if notes exist
+//     }
+//   }, [notes, editor]);
+
+//   if (!editor) return <p>Loading editor...</p>; // Prevent errors if `editor` is null
+
+//   return (
+//     <div>
+//       <EditorExtension editor={editor} />
+//       <div className="overflow-scroll h-[88vh]">
+//         <EditorContent editor={editor} />
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default TextEditor;
+
+import dynamic from "next/dynamic";
+import React, { useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import Highlight from "@tiptap/extension-highlight";
 import Underline from "@tiptap/extension-underline";
-//import dynamic from "next/dynamic";
 import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
+
 const EditorExtension = dynamic(
   () => import("../_components/EditiorExtension"),
   {
@@ -54,10 +112,8 @@ const EditorExtension = dynamic(
 );
 
 function TextEditor({ fileId }) {
-  const notes = useQuery(api.notes.GetNotes, {
-    fileId: fileId,
-  });
-  console.log(notes);
+  console.log("Current fileId:", fileId); // Debug fileId
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -73,17 +129,5 @@ function TextEditor({ fileId }) {
       },
     },
   });
-
-  if (!editor) return <p>Loading editor...</p>; // Prevent errors if `editor` is null
-
-  return (
-    <div>
-      <EditorExtension editor={editor} />
-      <div className="overflow-scroll h-[88vh]">
-        <EditorContent editor={editor} />
-      </div>
-    </div>
-  );
 }
-
 export default TextEditor;
