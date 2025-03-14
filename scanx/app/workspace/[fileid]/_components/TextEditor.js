@@ -53,7 +53,11 @@ const EditorExtension = dynamic(
   }
 );
 
-function TextEditor({}) {
+function TextEditor({ fileId }) {
+  const notes = useQuery(api.notes.GetNotes, {
+    fileId: fileId,
+  });
+  console.log(notes);
   const editor = useEditor({
     extensions: [
       StarterKit,
