@@ -112,7 +112,8 @@ const EditorExtension = dynamic(
 );
 
 function TextEditor({ fileId }) {
-  console.log("Current fileId:", fileId); // Debug fileId
+  const notes = useQuery(api.notes.GetNotes, { fileId }) || ""; // Ensure notes is never undefined
+  console.log("Fetched notes:", notes);
 
   const editor = useEditor({
     extensions: [
@@ -129,5 +130,24 @@ function TextEditor({ fileId }) {
       },
     },
   });
+
+  useEffect(() => {
+    if (editor && notes !== undefined) {
+      editor.commands.setContent(notes || ""); // Set content only if notes exist
+    }
+  }, [notes, editor]);
+
+  if (!editor) return <p>Loading editor...</p>;
+  if (!notes) return <p>Loading notes...</p>; // Handle loading state
+
+  return (
+    <div>
+      <EditorExtension editor={editor} />
+      <div className="overflow-scroll h-[88vh]">
+        <EditorContent editor={editor} />
+      </div>
+    </div>
+  );
 }
+
 export default TextEditor;
