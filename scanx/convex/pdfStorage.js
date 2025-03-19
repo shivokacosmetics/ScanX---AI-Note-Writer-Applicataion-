@@ -49,32 +49,21 @@ export const GetFileRecord = query({
     return result[0];
   },
 });
-// export const GetUserFiles = query({
-//   args: {
-//     userEmail: v.string(),
-//   },
-//   handler: async (ctx, args) => {
-//     const result = await ctx.db
-//       .query("pdfFiles")
-//       .filter((q) => q.eq(q.field("createdBy"), args.userEmail))
-//       .collect();
-//     return result;
-//   },
-// });
-import { query } from "./_generated/server";
-import { v } from "convex/values";
 
 export const GetUserFiles = query({
-  args: { userEmail: v.string() },
-  async handler(ctx, args) {
-    console.log("Fetching files for:", args.userEmail);
+  args: { userEmail: v.optional(v.string())
+   },
+  handler:async(ctx, args)=>{
+    if (!args?.userEmail) {
+      return;
+    }
 
-    const files = await ctx.db
+    const result = await ctx.db
       .query("pdfFiles") // Ensure this is the correct collection name
-      .withIndex("byUser", (q) => q.eq("createBy", args.userEmail)) // Using index
+      .filter((q) => q.eq(q.field("createBy"), args?.userEmail)) // Using index
       .collect();
 
-    console.log("Fetched files:", files);
-    return files;
-  },
-});
+  
+    return result; 
+  }
+})
