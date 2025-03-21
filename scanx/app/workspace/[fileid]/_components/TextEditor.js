@@ -226,7 +226,7 @@ function TextEditor({ fileId }) {
       </button> */}
 
       <EditorExtension editor={editor} />
-      <div className="overflow-scroll h-[88vh]">
+      <div className="overflow-scroll h-[80vh]">
         <EditorContent editor={editor} />
       </div>
     </div>

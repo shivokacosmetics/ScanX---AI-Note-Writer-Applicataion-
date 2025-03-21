@@ -268,7 +268,6 @@ function EditorExtension({ editor }) {
         `${AllText}<p><strong>Answer:</strong> ${FinalAns}</p>`
       );
 
-      // ✅ Fix: Ensure `user` exists before calling `saveNotes()`
       if (!isLoaded) {
         console.error("Clerk user data is still loading...");
         return;
