@@ -254,8 +254,6 @@ function EditorExtension({ editor }) {
 
       const PROMPT = `
         For question: ${selectedText}
-        and with the given content as an answer, 
-        please provide an appropriate answer in HTML format.
         The answer content is: ${AllUnformattedAns}
       `;
 
