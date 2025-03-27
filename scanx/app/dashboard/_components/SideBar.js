@@ -4,12 +4,14 @@ import Image from "next/image";
 import React from "react";
 import { Progress } from "../../../components/components/ui/progress";
 import UploadPdf from "./UploadPdf";
+import Link from "next/link";
 
 function SideBar() {
   return (
     <div className="shadow-md h-screen p-8 ">
+      <Link href="/">
       <Image src={"/ScanX_Logo.png"} alt="logo" width={280} height={280} />
-
+      </Link>
       <div className="pt-5">
         <UploadPdf>
         <Button className="w-full">+ Upload PDF</Button>

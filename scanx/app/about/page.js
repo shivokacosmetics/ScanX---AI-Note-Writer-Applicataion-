@@ -29,7 +29,7 @@ function Navbar() {
           <Link href="#solution" className="text-white hover:text-gray-300">
             Solution
           </Link>
-          <Link href="/dashboard">
+          <Link href="/">
             <Image
               src={"/scanx-Logo.png"}
               alt="ScanX Logo"

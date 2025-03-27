@@ -304,47 +304,47 @@ function EditorExtension({ editor }) {
         <div className="flex flex-wrap gap-2 items-center">
           <button
             onClick={() => editor.chain().focus().toggleBold().run()}
-            className={`p-2 rounded-lg border ${editor.isActive("bold") ? "bg-gray-300" : "bg-white"}`}
+            className={`p-2 rounded-lg shadow-xl p-2 ${editor.isActive("bold") ? "bg-gray-300" : "bg-white"}`}
           >
             <Bold size={20} />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleItalic().run()}
-            className={`p-2 rounded-lg border ${editor.isActive("italic") ? "bg-gray-300" : "bg-white"}`}
+            className={`p-2 rounded-lg shadow-xl p-2 ${editor.isActive("italic") ? "bg-gray-300" : "bg-white"}`}
           >
             <Italic size={20} />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleHighlight({ color: "#ffc078" }).run()}
-            className={`p-2 rounded-lg border ${editor.isActive("highlight", { color: "#ffc078" }) ? "bg-yellow-300" : "bg-white"}`}
+            className={`p-2 rounded-lg shadow-xl p-2 ${editor.isActive("highlight", { color: "#ffc078" }) ? "bg-yellow-300" : "bg-white"}`}
           >
             <Highlighter size={20} />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleUnderline().run()}
-            className={`p-2 rounded-lg border ${editor.isActive("underline") ? "bg-gray-300" : "bg-white"}`}
+            className={`p-2 rounded-lg shadow-xl p-2 ${editor.isActive("underline") ? "bg-gray-300" : "bg-white"}`}
           >
             <UnderlineIcon size={20} />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-            className={`p-2 rounded-lg border ${editor.isActive("heading", { level: 1 }) ? "bg-gray-300" : "bg-white"}`}
+            className={`p-2 rounded-lg shadow-xl p-2 ${editor.isActive("heading", { level: 1 }) ? "bg-gray-300" : "bg-white"}`}
           >
             <Heading1 size={20} />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-            className={`p-2 rounded-lg border ${editor.isActive("heading", { level: 2 }) ? "bg-gray-300" : "bg-white"}`}
+            className={`p-2 rounded-lg shadow-xl p-2 ${editor.isActive("heading", { level: 2 }) ? "bg-gray-300" : "bg-white"}`}
           >
             <Heading2 size={20} />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-            className={`p-2 rounded-lg border ${editor.isActive("heading", { level: 3 }) ? "bg-gray-300" : "bg-white"}`}
+            className={`p-2 rounded-lg shadow-xl p-2 ${editor.isActive("heading", { level: 3 }) ? "bg-gray-300" : "bg-white"}`}
           >
             <Heading3Icon size={20} />
           </button>
-          <button onClick={onAiClick} className="p-2 rounded-lg border hover:text-purple-600">
+          <button onClick={onAiClick} className="p-2 rounded-lg shadow-inner  hover:text-purple-600 ml-80 p-3">
             <Sparkles />
           </button>
         </div>

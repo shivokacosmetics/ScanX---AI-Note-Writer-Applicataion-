@@ -51,6 +51,7 @@ export default function Home() {
             <Link href="#solution" className="text-white hover:text-gray-300">
               Solution
             </Link>
+            
             <Image src={"/scanx-Logo.png"} alt="ScanX Logo" width={60} height={60} />
             <Link href="/pricing" className="text-white hover:text-gray-300">
               Pricing
