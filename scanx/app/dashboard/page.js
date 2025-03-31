@@ -25,7 +25,7 @@ function Dashboard() {
             </div>
             </Link>
           ))
-        :[1,2,3,45,6,7].map((item,index)=>(
+        :[1,2,3,4,6].map((item,index)=>(
           <div key={index} className="bg-slate-200 rounded-md h-[150px] animate-pulse"></div>
         ))
         }
