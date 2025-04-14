@@ -1,10 +1,18 @@
 "use client";
 import React from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import { useAction } from "convex/react";
+import { useUser } from "@clerk/nextjs";
+import { api } from "../../../convex/_generated/api";
 const PricingPanel = () => {
-  const onPaymentSuccess = () => {
-    // Handle successful payment here
-    console.log("Payment successful!");
+  const userUpgradePlan = useAction(api.user.userUpgradePlan);
+  const user = useUser();
+  const onPaymentSuccess = async () => {
+    const result = await userUpgradePlan({
+      email: user.emailAddresses[0].emailAddress,
+    });
+    console.log(result);
+    toast("Payment successful! Your plan has been upgraded.");
   };
   return (
     <div className="max-w-4xl mx-auto px-4">
