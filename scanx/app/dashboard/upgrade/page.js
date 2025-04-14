@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-
+import { PayPalButtons } from "@paypal/react-paypal-js";
 const PricingPanel = () => {
   return (
     <div className="max-w-4xl mx-auto px-4">
@@ -20,7 +21,7 @@ const PricingPanel = () => {
               <p className="mt-2 sm:mt-4">
                 <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
                   {" "}
-                  $257{" "}
+                  $30{" "}
                 </strong>
 
                 <span className="text-sm font-medium text-gray-700">
@@ -126,12 +127,14 @@ const PricingPanel = () => {
               </li>
             </ul>
 
-            <a
+            {/* <a
               href="#"
               className="mt-8 block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:ring-3 focus:outline-hidden"
             >
               Get Started
-            </a>
+            </a> */}
+
+            <PayPalButtons />
           </div>
 
           <div className="rounded-2xl border border-gray-200 p-6 shadow-xs sm:px-8 lg:p-12">
