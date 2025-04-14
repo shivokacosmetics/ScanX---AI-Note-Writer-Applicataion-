@@ -2,6 +2,10 @@
 import React from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 const PricingPanel = () => {
+  const onPaymentSuccess = () => {
+    // Handle successful payment here
+    console.log("Payment successful!");
+  };
   return (
     <div className="max-w-4xl mx-auto px-4">
       <h1 className="text-3xl font-bold mb-2">Plans</h1>
@@ -133,8 +137,24 @@ const PricingPanel = () => {
             >
               Get Started
             </a> */}
-
-            <PayPalButtons />
+            <div className="mt-5">
+              <PayPalButtons
+                onApprove={() => onPaymentSuccess()}
+                onCancel={() => console.log("Payment cancelled")}
+                createOrder={(data, actions) => {
+                  return actions?.order?.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: 30,
+                          currency_code: "USD",
+                        },
+                      },
+                    ],
+                  });
+                }}
+              />
+            </div>
           </div>
 
           <div className="rounded-2xl border border-gray-200 p-6 shadow-xs sm:px-8 lg:p-12">
