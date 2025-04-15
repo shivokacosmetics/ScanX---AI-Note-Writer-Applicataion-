@@ -15,6 +15,7 @@
     "@langchain/core": "^0.3.38",
     "@langchain/google-genai": "^0.1.8",
     "@paypal/react-paypal-js": "^8.8.3",
+
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-popover": "^1.1.5",
     "@radix-ui/react-progress": "^1.1.1",
@@ -23,7 +24,7 @@
     "@tiptap/core": "^2.11.5",
     "@tiptap/extension-highlight": "^2.11.5",
     "@tiptap/extension-placeholder": "^2.11.5",
-    "@tiptap/extension-text-align": "^2.11.5",
+    "@tiptap/extensison-text-align": "^2.11.5",
     "@tiptap/extension-underline": "^2.11.5",
     "@tiptap/pm": "^2.11.5",
     "@tiptap/react": "^2.11.5",
