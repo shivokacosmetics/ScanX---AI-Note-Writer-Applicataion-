@@ -1,6 +1,6 @@
 import { mutation } from "./_generated/server";
 import { v } from "convex/values";
-
+import{query} from "./_generated/server"
 export const createUser = mutation({
   args: {
     email: v.string(),
@@ -20,7 +20,7 @@ export const createUser = mutation({
         email: args.email,
         userName: args.userName,
         imageUrl: args.imageUrl,
-        pricing: false,
+        upgrade: false,
       });
       return "inserted new User...";
     }
@@ -35,7 +35,7 @@ export const userUpgradePlan = mutation({
   },
   handler: async (ctx, args) => {
     const result = await ctx.db
-      .qery("users")
+      .query("users")
       .filter((q) => q.eq(q.field("email"), args.email))
       .collect();
     if (result) {
@@ -45,3 +45,19 @@ export const userUpgradePlan = mutation({
     return "User not found...";
   },
 });
+
+export const GetUserInfo=query({
+  args:{
+    userEmail:v.optional(v.string())
+  },
+  handler:async(ctx,args)=>{
+    if(!args.userEmail){
+      return;
+    }
+    const result = await ctx.db
+    .query("users")
+    .filter((q) => q.eq(q.field("email"), args?.userEmail))
+    .collect();
+    return result[0];
+  }
+})

@@ -1,4 +1,3 @@
-import pricing from "app/pricing/page";
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
@@ -7,7 +6,7 @@ export default defineSchema({
     userName: v.string(),
     email: v.string(),
     imageUrl: v.string(),
-    pricing: v.boolean(),
+    upgrade:v.boolean()
   }),
 
   pdfFiles: defineTable({

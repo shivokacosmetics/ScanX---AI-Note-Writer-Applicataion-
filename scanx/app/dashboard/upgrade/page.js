@@ -33,7 +33,7 @@ const PricingPanel = () => {
               <p className="mt-2 sm:mt-4">
                 <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
                   {" "}
-                  $30{" "}
+                  RS 10{" "}
                 </strong>
 
                 <span className="text-sm font-medium text-gray-700">
@@ -154,7 +154,7 @@ const PricingPanel = () => {
                     purchase_units: [
                       {
                         amount: {
-                          value: 30,
+                          value: 50,
                           currency_code: "USD",
                         },
                       },
@@ -262,12 +262,14 @@ const PricingPanel = () => {
               </li>
             </ul>
 
-            <a
+            {/* <a
               href="#"
               className="mt-8 block rounded-full border border-indigo-600 bg-white px-12 py-3 text-center text-sm font-medium text-indigo-600 hover:ring-1 hover:ring-indigo-600 focus:ring-3 focus:outline-hidden"
             >
               Get Started
-            </a>
+            </a> */}
+
+            
           </div>
         </div>
       </div>
